@@ -1,25 +1,78 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full p-6 neon-text">
-    <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold neon-text mb-2">Soc Ops</h1>
-        <p class="text-lg neon-text mb-8 opacity-90">Social Bingo</p>
+  <div class="flex items-center justify-center min-h-full p-8">
+    <div class="max-w-md mx-auto">
 
-        <div class="panel-neon rounded-xl p-6 mb-8">
-            <h2 class="font-semibold neon-text mb-3">How to play</h2>
-            <ul class="text-left neon-text text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
-            </ul>
+      <!-- Hero -->
+      <section class="panel-neon rounded-xl p-6 mb-6 relative z-20">
+        <div class="flex items-center justify-between gap-6">
+          <div class="flex-1">
+            <h1 class="text-5xl font-bold neon-text mb-2">Soc Ops</h1>
+            <p class="text-lg neon-text mb-4">Turn introductions into a game. Find people who match the prompts — mark squares, make friends, win bingo.</p>
+
+            <div class="flex gap-3 mb-4">
+              <button
+                hx-post="/start"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+                class="btn-neon font-semibold py-3 px-6 text-lg">
+                Start Game
+              </button>
+
+              <a href="#how" class="badge-neon self-center px-3 py-2">How it works</a>
+            </div>
+
+            <div class="text-sm text-gray-300">
+              <span class="badge-neon">5×5 Board</span>
+              <span class="ml-2">• Center free space</span>
+              <span class="ml-2">• 24 unique prompts</span>
+            </div>
+          </div>
+
+          <!-- Preview card: stylized board -->
+          <div class="hidden md:block">
+            <div class="panel-neon rounded-lg p-3 glow-strong" style="width:160px;">
+              <div class="grid grid-cols-5 gap-1" style="width:134px;">
+                {% for r in range(25) %}
+                  {% set idx = r % 25 %}
+                  <div class="aspect-square rounded text-xs text-center panel-neon" style="padding:6px; font-size:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));"> 
+                    {% if r == 12 %}
+                      <strong>FREE</strong>
+                    {% else %}
+                      •
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <button
-            hx-post="/start"
-            hx-target="#game-container"
-            hx-swap="outerHTML"
-            class="w-full btn-neon font-semibold py-4 px-8 text-lg">
-            Start Game
-        </button>
+      <!-- Features / How it works -->
+      <section id="how" class="panel-neon rounded-xl p-6 mb-6">
+        <h2 class="font-semibold neon-text mb-3">How to play</h2>
+        <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap:12px;">
+          <div class="p-3 rounded-lg" style="background:rgba(255,255,255,0.01)">
+            <div class="font-semibold neon-text mb-1">Spot</div>
+            <div class="text-sm text-gray-300">Find someone who matches a prompt and say hi.</div>
+          </div>
+          <div class="p-3 rounded-lg" style="background:rgba(255,255,255,0.01)">
+            <div class="font-semibold neon-text mb-1">Mark</div>
+            <div class="text-sm text-gray-300">Tap the square to mark it on your board.</div>
+          </div>
+          <div class="p-3 rounded-lg" style="background:rgba(255,255,255,0.01)">
+            <div class="font-semibold neon-text mb-1">Win</div>
+            <div class="text-sm text-gray-300">Get five in a row to win and celebrate together.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Decorative footer with microcopy -->
+      <footer class="text-sm text-gray-400 text-center">
+        <div class="mb-2">Made for quick meet-and-greets — accessible, mobile-first, and playable in <span class="badge-neon">any</span> room.</div>
+        <div>Tip: Use the Start button or press <strong>Enter</strong> to begin.</div>
+      </footer>
+
     </div>
-</div>
+  </div>
 </div>
