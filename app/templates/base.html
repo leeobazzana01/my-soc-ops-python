@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#00d5ff">
     <meta name="description" content="Social Bingo - Find people who match the questions!">
     <title>Soc Ops - Social Bingo</title>
     <link rel="stylesheet" href="/static/css/app.css">
@@ -11,7 +11,11 @@
     <script src="/static/js/htmx.min.js"></script>
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="panel-neon hero-glow">
+        <!-- decorative planets -->
+        <div class="planet-decor" style="left:6%;top:8%;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,90,160,0.95), rgba(20,6,60,0.6));"></div>
+        <div class="planet-decor" style="right:8%;bottom:10%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(0,213,255,0.95), rgba(2,8,30,0.6));opacity:0.08;"></div>
+        <div class="planet-decor" style="right:20%;top:18%;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 35%, rgba(138,43,226,0.95), rgba(8,4,30,0.6));opacity:0.12;"></div>
         {% block content %}{% endblock %}
     </div>
 </body>
