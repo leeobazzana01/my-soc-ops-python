@@ -41,3 +41,22 @@ uv run uvicorn app.main:app --reload --port 8000  # Run locally to verify
 - **Debug session**: Check `app.game_service._sessions` dict (key = session ID, value = `GameSession`)
 - **Style template**: Use `.bg-accent` (#2563eb), `.bg-marked` (#dcfce7), `.text-gray-700` from `app/static/css/app.css`
 - **Add route**: Call `_get_game_session(request)`, modify state, return template response
+
+## Design Guide — Cyberpunk Galaxy
+
+Purpose: Keep the UI consistent with the Dark Mode Noir / Cyberpunk Galaxy redesign: neon accents, deep space backgrounds, subtle motion, and sci‑fi typography.
+
+Principles
+- Typography: use Orbitron for headings and Oxanium for UI text (fonts imported in app/static/css/app.css).
+- Color & Theme: prefer CSS variables (e.g. --bg, --panel, --neon-cyan, --neon-pink, --neon-purple, --accent) defined in app/static/css/app.css.
+- Motion: favor CSS-only effects (drift, gentle bounce, glow). Respect prefers-reduced-motion.
+- Backgrounds: layer radial gradients + a low-opacity starfield; decorative planets use .planet-decor.
+- Components: panels -> .panel-neon; primary buttons -> .btn-neon; badges -> .badge-neon; use .neon-text for headings.
+- Assets: place SVG/PNG assets in app/static/img/ (spaceships, aliens, planets). Use small, optimized files and size with .spaceship.
+- Accessibility: maintain sufficient contrast, use aria-labels, focus styles, and reduced-motion support.
+
+Implementation notes
+- When adding visuals, add a short CSS utility in app/static/css/app.css following existing patterns.
+- Reuse variables for colors and glows; avoid hard-coded hexes in templates.
+- Document any new assets or style variables in this file.
+
