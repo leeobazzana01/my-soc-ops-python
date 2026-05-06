@@ -1,25 +1,69 @@
 🌐 [Português (BR)](README.pt_BR.md) | [Español](README.es.md)
 
-# Soc Ops
+# Soc Ops — Social Bingo with Personality
 
-Social Bingo game for in-person mixers. Find people who match the questions and get 5 in a row!
+Soc Ops turns icebreakers into a playful game: a 5×5 bingo board of human-first questions. Talk, mark, and connect—get five in a row to win. Perfect for meetups, orientation events, and team mixers.
 
----
+![Playful board illustration](docs/board-placeholder.png)
 
-## 📚 Lab Guide
-
-| Part | Title |
-|------|-------|
-| [**00**](https://copilot-dev-days.github.io/agent-lab-python/docs/step.html?step=00-overview) | Overview & Checklist |
-| [**01**](https://copilot-dev-days.github.io/agent-lab-python/docs/step.html?step=01-setup) | Setup & Context Engineering |
-| [**02**](https://copilot-dev-days.github.io/agent-lab-python/docs/step.html?step=02-design) | Design-First Frontend |
-| [**03**](https://copilot-dev-days.github.io/agent-lab-python/docs/step.html?step=03-quiz-master) | Custom Quiz Master |
-| [**04**](https://copilot-dev-days.github.io/agent-lab-python/docs/step.html?step=04-multi-agent) | Multi-Agent Development |
-
-> 📝 Lab guides are also available in the [`workshop/`](workshop/) folder for offline reading.
+Why this project matters
+- Encourages real conversation over small-talk
+- HTMX + FastAPI for a fast, accessible frontend experience
+- Tiny, testable core logic so it’s easy to extend or embed
 
 ---
 
-## 🚀 Getting Started
+## Quick Start — Play locally (30s)
 
-Head to **[Part 00: Overview](https://copilot-dev-days.github.io/agent-lab-python/step.html?step=00-overview)** for prerequisites and setup instructions.
+1. Create a virtualenv and activate it (optional but recommended)
+
+   python -m venv .venv && source .venv/bin/activate
+
+2. Install dependencies
+
+   pip install -r requirements.txt
+
+3. Run checks and tests (project conventions)
+
+   uv run ruff check .
+   uv run pytest
+
+4. Start the server
+
+   uv run uvicorn app.main:app --reload --port 8000
+
+Open http://localhost:8000 and start a game.
+
+---
+
+## Highlights
+
+- Lightweight FastAPI backend + Jinja2 templates
+- HTMX endpoints for partial swaps (no heavy SPA required)
+- Pure, unit-testable game logic in app/game_logic.py
+- In-memory session-backed GameSession for quick demos
+
+---
+
+## How it works (tl;dr)
+- A 5×5 board is generated; the center square is a FREE SPACE.
+- 24 curated questions fill the remaining squares.
+- Players click to mark squares; the server evaluates winning lines (rows, columns, diagonals).
+- Templates in app/templates/components/ render HTMX fragments for live updates.
+
+---
+
+## Contribute
+- Want to add questions, a theme, or mobile polish? Contributions welcome.
+- Follow the dev checklist in the repo: run ruff, pytest, then run the app locally to validate changes.
+- Edit app/data.py to update QUESTIONS (keep it at 24 items) or extend GameSession behavior in app/game_service.py.
+
+---
+
+## Resources
+- Workshop & lab guide: [`workshop/`](workshop/)
+- Code overview: app/main.py, app/game_logic.py, app/game_service.py, app/data.py
+
+---
+
+Made with ❤️ for better small talk — enjoy connecting.
